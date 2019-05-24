@@ -3,7 +3,6 @@
  */
 package cumulative.poetry;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,15 +28,15 @@ public class Poet {
         for (int i = index - 1; i >= 0; i--) {
             if (i == 0) {
                 if (eFlag) {
-                    recitePhrase = recitePhrase + poem.phrase.get(i) + "\n\t";
+                    recitePhrase = recitePhrase + poem.lines.get(i) + "\n\t";
                 }
-                recitePhrase = recitePhrase + poem.phrase.get(i) + ".";
+                recitePhrase = recitePhrase + poem.lines.get(i) + ".";
                 return recitePhrase;
             } else {
 
-                recitePhrase = recitePhrase + poem.phrase.get(i) + "\n\t";
+                recitePhrase = recitePhrase + poem.lines.get(i) + "\n\t";
                 if (eFlag) {
-                    recitePhrase = recitePhrase + poem.phrase.get(i) + "\n\t";
+                    recitePhrase = recitePhrase + poem.lines.get(i) + "\n\t";
                 }
             }
         }
