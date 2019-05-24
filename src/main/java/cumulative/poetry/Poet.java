@@ -3,8 +3,94 @@
  */
 package cumulative.poetry;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Poet {
-    public String recite() {
-        return "";
+    public ArrayList<String> phrase;
+
+    public Poet() {
+        phrase = new ArrayList<String>();
+        phrase.add("the house that Jack built");
+        phrase.add("the malt that lay in");
+        phrase.add("the rat that ate");
+        phrase.add("the cat that killed");
+        phrase.add("the dog that worried");
+        phrase.add("that cow with the crumpled horn that tossed");
+        phrase.add("the maiden all forlorn that milked");
+        phrase.add("the man all tattered and torn that kissed");
+        phrase.add("the priest all shaven and shorn that married");
+        phrase.add("the rooster that crowed in the morn that woke");
+        phrase.add("the farmer sowing his corn that kept");
+        phrase.add("the horse and the hound and the horn that belonged to");
+    }
+
+    public String recite(int index, boolean eFlag) {
+        String recite = "";
+        for (int i = 1; i <= index; i++) {
+            recite = recite + "Day " + i + " -";
+            //System.out.println("\nDay " + i + " -");
+            recite = recite + revealForTheDay(i, eFlag) + "\n\t\n";
+        }
+        //System.out.print(recite);
+        return recite.trim();
+    }
+
+    public String revealForTheDay(int index, boolean eFlag) {
+        //System.out.print("This is ");
+        String recitePhrase = "This is ";
+        for (int i = index - 1; i >= 0; i--) {
+            if (i == 0) {
+                if (eFlag) {
+                    recitePhrase = recitePhrase + phrase.get(i) + "\n\t";
+                }
+                recitePhrase = recitePhrase + phrase.get(i) + ".";
+                return recitePhrase;
+            } else {
+
+                recitePhrase = recitePhrase + phrase.get(i) + "\n\t";
+                if (eFlag) {
+                    recitePhrase = recitePhrase + phrase.get(i) + "\n\t";
+                }
+            }
+        }
+        return recitePhrase.trim();
+    }
+
+
+    public static void main(String[] args) {
+        Poet poet = new Poet();
+        boolean eFlag = false;
+        String output = "";
+        List<String> argumentList = Arrays.asList(args);
+        if (args.length > 0) {
+            if (argumentList.contains("--echo")) {
+                eFlag = true;
+            }
+            if (argumentList.contains("--reveal-for-day")) {
+
+                //  System.out.println(Integer.parseInt(args[(argumentList.indexOf("--reveal-for-day")+1)]));
+                try {
+                    output = poet.revealForTheDay(Integer.parseInt(args[(argumentList.indexOf("--reveal-for-day") + 1)]), eFlag);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("ArrayIndexOutOfBoundsException");
+                } catch (NumberFormatException e) {
+                    System.out.println("NumberFormatException");
+
+                } catch (Exception e) {
+                    System.out.println("Exception");
+                }
+            }
+            if (argumentList.contains("--recite")) {
+                output = poet.recite(12, eFlag);
+            }
+            System.out.print(output);
+        } else {
+            System.out.println("Please provide some arguments");
+
+        }
+
     }
 }
+

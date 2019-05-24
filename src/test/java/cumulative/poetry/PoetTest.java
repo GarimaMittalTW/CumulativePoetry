@@ -3,12 +3,294 @@
  */
 package cumulative.poetry;
 
+import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class PoetTest {
-    @Test public void shouldSaySomething() {
-        Poet poet = new Poet();
-        assertFalse("Poet should say something, but said nothing",poet.recite().isEmpty());
+    Poet poet;
+
+    @Before
+    public void setup() {
+        poet = new Poet();
     }
+
+    @Test
+    public void testRevealForSpecifiedDay() {
+        assertEquals("This is the malt that lay in\n\t" + "the house that Jack built.", poet.revealForTheDay(2, false));
+    }
+
+    @Test
+    public void testRecite() {
+        assertEquals("Day 1 -This is the house that Jack built.\n" +
+                "\t\n" +
+                "Day 2 -This is the malt that lay in\n" +
+                "\tthe house that Jack built.\n" +
+                "\t\n" +
+                "Day 3 -This is the rat that ate\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe house that Jack built.\n" +
+                "\t\n" +
+                "Day 4 -This is the cat that killed\n" +
+                "\tthe rat that ate\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe house that Jack built.\n" +
+                "\t\n" +
+                "Day 5 -This is the dog that worried\n" +
+                "\tthe cat that killed\n" +
+                "\tthe rat that ate\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe house that Jack built.\n" +
+                "\t\n" +
+                "Day 6 -This is that cow with the crumpled horn that tossed\n" +
+                "\tthe dog that worried\n" +
+                "\tthe cat that killed\n" +
+                "\tthe rat that ate\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe house that Jack built.\n" +
+                "\t\n" +
+                "Day 7 -This is the maiden all forlorn that milked\n" +
+                "\tthat cow with the crumpled horn that tossed\n" +
+                "\tthe dog that worried\n" +
+                "\tthe cat that killed\n" +
+                "\tthe rat that ate\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe house that Jack built.\n" +
+                "\t\n" +
+                "Day 8 -This is the man all tattered and torn that kissed\n" +
+                "\tthe maiden all forlorn that milked\n" +
+                "\tthat cow with the crumpled horn that tossed\n" +
+                "\tthe dog that worried\n" +
+                "\tthe cat that killed\n" +
+                "\tthe rat that ate\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe house that Jack built.\n" +
+                "\t\n" +
+                "Day 9 -This is the priest all shaven and shorn that married\n" +
+                "\tthe man all tattered and torn that kissed\n" +
+                "\tthe maiden all forlorn that milked\n" +
+                "\tthat cow with the crumpled horn that tossed\n" +
+                "\tthe dog that worried\n" +
+                "\tthe cat that killed\n" +
+                "\tthe rat that ate\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe house that Jack built.\n" +
+                "\t\n" +
+                "Day 10 -This is the rooster that crowed in the morn that woke\n" +
+                "\tthe priest all shaven and shorn that married\n" +
+                "\tthe man all tattered and torn that kissed\n" +
+                "\tthe maiden all forlorn that milked\n" +
+                "\tthat cow with the crumpled horn that tossed\n" +
+                "\tthe dog that worried\n" +
+                "\tthe cat that killed\n" +
+                "\tthe rat that ate\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe house that Jack built.\n" +
+                "\t\n" +
+                "Day 11 -This is the farmer sowing his corn that kept\n" +
+                "\tthe rooster that crowed in the morn that woke\n" +
+                "\tthe priest all shaven and shorn that married\n" +
+                "\tthe man all tattered and torn that kissed\n" +
+                "\tthe maiden all forlorn that milked\n" +
+                "\tthat cow with the crumpled horn that tossed\n" +
+                "\tthe dog that worried\n" +
+                "\tthe cat that killed\n" +
+                "\tthe rat that ate\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe house that Jack built.\n" +
+                "\t\n" +
+                "Day 12 -This is the horse and the hound and the horn that belonged to\n" +
+                "\tthe farmer sowing his corn that kept\n" +
+                "\tthe rooster that crowed in the morn that woke\n" +
+                "\tthe priest all shaven and shorn that married\n" +
+                "\tthe man all tattered and torn that kissed\n" +
+                "\tthe maiden all forlorn that milked\n" +
+                "\tthat cow with the crumpled horn that tossed\n" +
+                "\tthe dog that worried\n" +
+                "\tthe cat that killed\n" +
+                "\tthe rat that ate\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe house that Jack built.", poet.recite(12, false).trim());
+    }
+
+    @Test
+    public void testEchoForReveal() {
+        assertEquals("This is the malt that lay in\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe house that Jack built\n" +
+                "\tthe house that Jack built.", poet.revealForTheDay(2, true));
+    }
+
+    @Test
+    public void testEchoforRecite() {
+        assertEquals("Day 1 -This is the house that Jack built\n" +
+                "\tthe house that Jack built.\n" +
+                "\t\n" +
+                "Day 2 -This is the malt that lay in\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe house that Jack built\n" +
+                "\tthe house that Jack built.\n" +
+                "\t\n" +
+                "Day 3 -This is the rat that ate\n" +
+                "\tthe rat that ate\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe house that Jack built\n" +
+                "\tthe house that Jack built.\n" +
+                "\t\n" +
+                "Day 4 -This is the cat that killed\n" +
+                "\tthe cat that killed\n" +
+                "\tthe rat that ate\n" +
+                "\tthe rat that ate\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe house that Jack built\n" +
+                "\tthe house that Jack built.\n" +
+                "\t\n" +
+                "Day 5 -This is the dog that worried\n" +
+                "\tthe dog that worried\n" +
+                "\tthe cat that killed\n" +
+                "\tthe cat that killed\n" +
+                "\tthe rat that ate\n" +
+                "\tthe rat that ate\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe house that Jack built\n" +
+                "\tthe house that Jack built.\n" +
+                "\t\n" +
+                "Day 6 -This is that cow with the crumpled horn that tossed\n" +
+                "\tthat cow with the crumpled horn that tossed\n" +
+                "\tthe dog that worried\n" +
+                "\tthe dog that worried\n" +
+                "\tthe cat that killed\n" +
+                "\tthe cat that killed\n" +
+                "\tthe rat that ate\n" +
+                "\tthe rat that ate\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe house that Jack built\n" +
+                "\tthe house that Jack built.\n" +
+                "\t\n" +
+                "Day 7 -This is the maiden all forlorn that milked\n" +
+                "\tthe maiden all forlorn that milked\n" +
+                "\tthat cow with the crumpled horn that tossed\n" +
+                "\tthat cow with the crumpled horn that tossed\n" +
+                "\tthe dog that worried\n" +
+                "\tthe dog that worried\n" +
+                "\tthe cat that killed\n" +
+                "\tthe cat that killed\n" +
+                "\tthe rat that ate\n" +
+                "\tthe rat that ate\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe house that Jack built\n" +
+                "\tthe house that Jack built.\n" +
+                "\t\n" +
+                "Day 8 -This is the man all tattered and torn that kissed\n" +
+                "\tthe man all tattered and torn that kissed\n" +
+                "\tthe maiden all forlorn that milked\n" +
+                "\tthe maiden all forlorn that milked\n" +
+                "\tthat cow with the crumpled horn that tossed\n" +
+                "\tthat cow with the crumpled horn that tossed\n" +
+                "\tthe dog that worried\n" +
+                "\tthe dog that worried\n" +
+                "\tthe cat that killed\n" +
+                "\tthe cat that killed\n" +
+                "\tthe rat that ate\n" +
+                "\tthe rat that ate\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe house that Jack built\n" +
+                "\tthe house that Jack built.\n" +
+                "\t\n" +
+                "Day 9 -This is the priest all shaven and shorn that married\n" +
+                "\tthe priest all shaven and shorn that married\n" +
+                "\tthe man all tattered and torn that kissed\n" +
+                "\tthe man all tattered and torn that kissed\n" +
+                "\tthe maiden all forlorn that milked\n" +
+                "\tthe maiden all forlorn that milked\n" +
+                "\tthat cow with the crumpled horn that tossed\n" +
+                "\tthat cow with the crumpled horn that tossed\n" +
+                "\tthe dog that worried\n" +
+                "\tthe dog that worried\n" +
+                "\tthe cat that killed\n" +
+                "\tthe cat that killed\n" +
+                "\tthe rat that ate\n" +
+                "\tthe rat that ate\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe house that Jack built\n" +
+                "\tthe house that Jack built.\n" +
+                "\t\n" +
+                "Day 10 -This is the rooster that crowed in the morn that woke\n" +
+                "\tthe rooster that crowed in the morn that woke\n" +
+                "\tthe priest all shaven and shorn that married\n" +
+                "\tthe priest all shaven and shorn that married\n" +
+                "\tthe man all tattered and torn that kissed\n" +
+                "\tthe man all tattered and torn that kissed\n" +
+                "\tthe maiden all forlorn that milked\n" +
+                "\tthe maiden all forlorn that milked\n" +
+                "\tthat cow with the crumpled horn that tossed\n" +
+                "\tthat cow with the crumpled horn that tossed\n" +
+                "\tthe dog that worried\n" +
+                "\tthe dog that worried\n" +
+                "\tthe cat that killed\n" +
+                "\tthe cat that killed\n" +
+                "\tthe rat that ate\n" +
+                "\tthe rat that ate\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe house that Jack built\n" +
+                "\tthe house that Jack built.\n" +
+                "\t\n" +
+                "Day 11 -This is the farmer sowing his corn that kept\n" +
+                "\tthe farmer sowing his corn that kept\n" +
+                "\tthe rooster that crowed in the morn that woke\n" +
+                "\tthe rooster that crowed in the morn that woke\n" +
+                "\tthe priest all shaven and shorn that married\n" +
+                "\tthe priest all shaven and shorn that married\n"  +
+                "\tthe man all tattered and torn that kissed\n"  +
+                "\tthe man all tattered and torn that kissed\n" +
+                "\tthe maiden all forlorn that milked\n" +
+                "\tthe maiden all forlorn that milked\n" +
+                "\tthat cow with the crumpled horn that tossed\n" +
+                "\tthat cow with the crumpled horn that tossed\n" +
+                "\tthe dog that worried\n" +
+                "\tthe dog that worried\n" +
+                "\tthe cat that killed\n" +
+                "\tthe cat that killed\n" +
+                "\tthe rat that ate\n" +
+                "\tthe rat that ate\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe house that Jack built\n" +
+                "\tthe house that Jack built.\n" +
+                "\t\n" +
+                "Day 12 -This is the horse and the hound and the horn that belonged to\n" +
+                "\tthe horse and the hound and the horn that belonged to\n" +
+                "\tthe farmer sowing his corn that kept\n" +
+                "\tthe farmer sowing his corn that kept\n" +
+                "\tthe rooster that crowed in the morn that woke\n" +
+                "\tthe rooster that crowed in the morn that woke\n" +
+                "\tthe priest all shaven and shorn that married\n" +
+                "\tthe priest all shaven and shorn that married\n" +
+                "\tthe man all tattered and torn that kissed\n" +
+                "\tthe man all tattered and torn that kissed\n" +
+                "\tthe maiden all forlorn that milked\n" +
+                "\tthe maiden all forlorn that milked\n" +
+                "\tthat cow with the crumpled horn that tossed\n" +
+                "\tthat cow with the crumpled horn that tossed\n" +
+                "\tthe dog that worried\n" +
+                "\tthe dog that worried\n" +
+                "\tthe cat that killed\n" +
+                "\tthe cat that killed\n" +
+                "\tthe rat that ate\n" +
+                "\tthe rat that ate\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe malt that lay in\n" +
+                "\tthe house that Jack built\n" +
+                "\tthe house that Jack built.", poet.recite(12, true));
+    }
+
 }
