@@ -8,24 +8,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Poet {
-    public ArrayList<String> phrase;
-
-    public Poet() {
-        phrase = new ArrayList<String>();
-        phrase.add("the house that Jack built");
-        phrase.add("the malt that lay in");
-        phrase.add("the rat that ate");
-        phrase.add("the cat that killed");
-        phrase.add("the dog that worried");
-        phrase.add("that cow with the crumpled horn that tossed");
-        phrase.add("the maiden all forlorn that milked");
-        phrase.add("the man all tattered and torn that kissed");
-        phrase.add("the priest all shaven and shorn that married");
-        phrase.add("the rooster that crowed in the morn that woke");
-        phrase.add("the farmer sowing his corn that kept");
-        phrase.add("the horse and the hound and the horn that belonged to");
+    Poem poem;
+    Poet(Poem poem){
+        this.poem = poem;
     }
-
     public String recite(int index, boolean eFlag) {
         String recite = "";
         for (int i = 1; i <= index; i++) {
@@ -43,15 +29,15 @@ public class Poet {
         for (int i = index - 1; i >= 0; i--) {
             if (i == 0) {
                 if (eFlag) {
-                    recitePhrase = recitePhrase + phrase.get(i) + "\n\t";
+                    recitePhrase = recitePhrase + poem.phrase.get(i) + "\n\t";
                 }
-                recitePhrase = recitePhrase + phrase.get(i) + ".";
+                recitePhrase = recitePhrase + poem.phrase.get(i) + ".";
                 return recitePhrase;
             } else {
 
-                recitePhrase = recitePhrase + phrase.get(i) + "\n\t";
+                recitePhrase = recitePhrase + poem.phrase.get(i) + "\n\t";
                 if (eFlag) {
-                    recitePhrase = recitePhrase + phrase.get(i) + "\n\t";
+                    recitePhrase = recitePhrase + poem.phrase.get(i) + "\n\t";
                 }
             }
         }
@@ -60,7 +46,7 @@ public class Poet {
 
 
     public static void main(String[] args) {
-        Poet poet = new Poet();
+        Poet poet = new Poet(new Poem());
         boolean eFlag = false;
         String output = "";
         List<String> argumentList = Arrays.asList(args);

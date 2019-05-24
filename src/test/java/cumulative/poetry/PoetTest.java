@@ -13,7 +13,7 @@ public class PoetTest {
 
     @Before
     public void setup() {
-        poet = new Poet();
+        poet = new Poet(new Poem());
     }
 
     @Test
