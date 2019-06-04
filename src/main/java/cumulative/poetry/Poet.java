@@ -8,9 +8,11 @@ import java.util.List;
 
 public class Poet {
     Poem poem;
-    Poet(Poem poem){
+
+    Poet(Poem poem) {
         this.poem = poem;
     }
+
     public String recite(int index, boolean eFlag) {
         String recite = "";
         for (int i = 1; i <= index; i++) {
@@ -44,38 +46,5 @@ public class Poet {
     }
 
 
-    public static void main(String[] args) {
-        Poet poet = new Poet(new Poem());
-        boolean eFlag = false;
-        String output = "";
-        List<String> argumentList = Arrays.asList(args);
-        if (args.length > 0) {
-            if (argumentList.contains("--echo")) {
-                eFlag = true;
-            }
-            if (argumentList.contains("--reveal-for-day")) {
-
-                //  System.out.println(Integer.parseInt(args[(argumentList.indexOf("--reveal-for-day")+1)]));
-                try {
-                    output = poet.revealForTheDay(Integer.parseInt(args[(argumentList.indexOf("--reveal-for-day") + 1)]), eFlag);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    System.out.println("ArrayIndexOutOfBoundsException");
-                } catch (NumberFormatException e) {
-                    System.out.println("NumberFormatException");
-
-                } catch (Exception e) {
-                    System.out.println("Exception");
-                }
-            }
-            if (argumentList.contains("--recite")) {
-                output = poet.recite(12, eFlag);
-            }
-            System.out.print(output);
-        } else {
-            System.out.println("Please provide some arguments");
-
-        }
-
-    }
 }
 
