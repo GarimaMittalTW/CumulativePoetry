@@ -9,10 +9,11 @@ public class Driver {
         Parser parser = new Parser(args);
         String output = "";
         if(parser.isRecite){
-            poet.recite(parser.day,parser.isEcho);
+            output = poet.recite(parser.day,parser.isEcho);
         }
         if(parser.isRevealForDay){
-            poet.recite(parser.day,parser.isEcho);
+           output = poet.revealForTheDay(parser.day,parser.isEcho);
         }
+        System.out.print(output);
     }
 }
