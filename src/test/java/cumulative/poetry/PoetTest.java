@@ -9,16 +9,18 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class PoetTest {
-    Poet poet;
+    PoetWithoutEcho poetWithoutEcho;
+    PoetWithEcho poetWithEcho;
 
     @Before
     public void setup() {
-        poet = new Poet(new Poem());
+        poetWithoutEcho = new PoetWithoutEcho(new Poem());
+        poetWithEcho = new PoetWithEcho(new Poem());
     }
 
     @Test
     public void testRevealForSpecifiedDay() {
-        assertEquals("This is the malt that lay in\n\t" + "the house that Jack built.", poet.revealForTheDay(2, false));
+        assertEquals("This is the malt that lay in\n\t" + "the house that Jack built.", poetWithoutEcho.revealForTheDay(2));
     }
 
     @Test
@@ -111,7 +113,7 @@ public class PoetTest {
                 "\tthe cat that killed\n" +
                 "\tthe rat that ate\n" +
                 "\tthe malt that lay in\n" +
-                "\tthe house that Jack built.", poet.recite(12, false).trim());
+                "\tthe house that Jack built.", poetWithoutEcho.recite(new Parser(new String[]{"--recite"})));
     }
 
     @Test
@@ -119,7 +121,7 @@ public class PoetTest {
         assertEquals("This is the malt that lay in\n" +
                 "\tthe malt that lay in\n" +
                 "\tthe house that Jack built\n" +
-                "\tthe house that Jack built.", poet.revealForTheDay(2, true));
+                "\tthe house that Jack built.", poetWithEcho.revealForTheDay(2));
     }
 
     @Test
@@ -249,8 +251,8 @@ public class PoetTest {
                 "\tthe rooster that crowed in the morn that woke\n" +
                 "\tthe rooster that crowed in the morn that woke\n" +
                 "\tthe priest all shaven and shorn that married\n" +
-                "\tthe priest all shaven and shorn that married\n"  +
-                "\tthe man all tattered and torn that kissed\n"  +
+                "\tthe priest all shaven and shorn that married\n" +
+                "\tthe man all tattered and torn that kissed\n" +
                 "\tthe man all tattered and torn that kissed\n" +
                 "\tthe maiden all forlorn that milked\n" +
                 "\tthe maiden all forlorn that milked\n" +
@@ -290,7 +292,7 @@ public class PoetTest {
                 "\tthe malt that lay in\n" +
                 "\tthe malt that lay in\n" +
                 "\tthe house that Jack built\n" +
-                "\tthe house that Jack built.", poet.recite(12, true));
+                "\tthe house that Jack built.", poetWithEcho.recite(new Parser(new String[]{"--recite", "--echo"})));
     }
 
 }

@@ -5,15 +5,18 @@ import java.util.List;
 
 public class Driver {
     public static void main(String[] args) {
-        Poet poet = new Poet(new Poem());
+        IPoet poet;
         Parser parser = new Parser(args);
         String output = "";
-        if(parser.isRecite){
-            output = poet.recite(parser.day,parser.isEcho);
+        if (parser.isRecite) {
+            poet= parser.isEcho ?  new PoetWithEcho(new Poem()) :  new PoetWithoutEcho(new Poem());
+            output = poet.recite(parser);
         }
-        if(parser.isRevealForDay){
-           output = poet.revealForTheDay(parser.day,parser.isEcho);
+        if (parser.isRevealForDay) {
+           poet= parser.isEcho ?   new PoetWithEcho(new Poem()): new PoetWithEcho(new Poem());
+            output = poet.revealForTheDay(parser.day);
         }
+
         System.out.print(output);
     }
 }
